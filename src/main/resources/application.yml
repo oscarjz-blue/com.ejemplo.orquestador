@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: orquestador
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1600000
+        readTimeout: 1600000
+        loggerLevel: basic
+server:
+  port: 10001
+
+# Configuración de servicios
+clienteservice:
+  url: http://localhost:10002
+cuentaservice:
+  url: http://localhost:10003
+movimientosservice:
+  url: http://localhost:10004
