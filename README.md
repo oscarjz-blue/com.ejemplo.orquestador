@@ -18,28 +18,8 @@ Conexion con H2 mediante el browser, con la posibilidad de ver las tablas y hace
 La arquitectura propuesta es Orquestador, y por la consigna decidi que los microservicios de cliente, cuenta, movimientos esten integrados a los efectos practicos:
 Observacion: tiene un solo llamado a servicio "externo" mediante un ClienteClient (con feign)
 
-src/main/java/com/ejemplo/orquestador
-├── client
-│   └── ClienteCient.java
-├── controller
-│   └── ClienteControlador.java
-│	 └── CuentaControlador.java
-│	 └── MovimientoControlador.java
-├── service
-│   └── ClienteServicio.java
-│   └── CuentaServicio.java
-│   └── MovimientoServicio.java
-├── entity
-│   └── Cliente.java
-│   └── Cuenta.java
-│   └── Movimiento.java
-├── repository
-│   └── ClienteRepository.java
-│   └── CuentaRepository.java
-│   └── MovimientoRepository.java
-├── exceptions
-│   └── RecursoDuplicadoException.java
-└── OrquestadorApplication.java
+![imagen](https://github.com/user-attachments/assets/0a19fbe9-9ae6-444b-9883-db9b776950f5)
+
 
 
 Ejemplo de creacion de un cliente, una cuenta y un movimiento:
