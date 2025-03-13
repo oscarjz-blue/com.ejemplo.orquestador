@@ -18,9 +18,7 @@ Conexion con H2 mediante el browser, con la posibilidad de ver las tablas y hace
 La arquitectura propuesta es Orquestador, y por la consigna decidi que los microservicios de cliente, cuenta, movimientos esten integrados a los efectos practicos:
 Observacion: tiene un solo llamado a servicio "externo" mediante un ClienteClient (con feign)
 
-![imagen](https://github.com/user-attachments/assets/0a19fbe9-9ae6-444b-9883-db9b776950f5)
-
-
+![imagen](https://github.com/user-attachments/assets/52a557d3-7552-484d-aec0-f147a06fba51)
 
 Ejemplo de creacion de un cliente, una cuenta y un movimiento:
 
