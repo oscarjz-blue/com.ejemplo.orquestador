@@ -13,8 +13,11 @@ server:
   port: 10001
 
 # Configuración de servicios
+# aqui hago una llamada interna a un servicio
 clienteservice:
-  url: http://localhost:10002
+  url: http://localhost:10001
+
+# para llamada a microservicios externos
 cuentaservice:
   url: http://localhost:10003
 movimientosservice:

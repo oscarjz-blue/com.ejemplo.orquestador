@@ -2,7 +2,7 @@ package com.ejemplo.orquestador.dto;
 
 import java.util.List;
 
-public class DetalleMovClienteDTO {
+public class DetalleMovDTO {
 
     private String clienteId;
     private String nombreCliente;
@@ -11,7 +11,7 @@ public class DetalleMovClienteDTO {
     private List<MovimientoDTO> movimientos;
 
     // Constructor
-    public DetalleMovClienteDTO(String clienteId, String nombreCliente, String cuentaId, String tipoCuenta, List<MovimientoDTO> movimientos) {
+    public DetalleMovDTO(String clienteId, String nombreCliente, String cuentaId, String tipoCuenta, List<MovimientoDTO> movimientos) {
         this.clienteId = clienteId;
         this.nombreCliente = nombreCliente;
         this.cuentaId = cuentaId;

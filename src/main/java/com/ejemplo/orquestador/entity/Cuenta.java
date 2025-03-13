@@ -10,6 +10,10 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Getter
@@ -29,6 +33,9 @@ public class Cuenta {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-
+    @CreationTimestamp
+    private Date creationDate;
+    @UpdateTimestamp
+    private Date modificationDate;
     // Getters y Setters
 }

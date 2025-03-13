@@ -2,6 +2,10 @@ package com.ejemplo.orquestador.controller;
 
 import com.ejemplo.orquestador.entity.Cuenta;
 import com.ejemplo.orquestador.service.CuentaService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +29,11 @@ public class CuentaController {
     private CuentaService cuentaService;
 
     @PostMapping
+    @ApiOperation(value = "Crear una nueva cuenta", response = Cuenta.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Cuenta creada exitosamente"),
+            @ApiResponse(code = 400, message = "Solicitud incorrecta, datos inválidos")
+    })
     public ResponseEntity<Cuenta> crearCuenta(@RequestBody Cuenta cuenta) {
         try {
             Cuenta nuevaCuenta = cuentaService.crearCuenta(cuenta);
@@ -35,6 +44,11 @@ public class CuentaController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Obtener cuenta por ID", response = Cuenta.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Cuenta encontrada"),
+            @ApiResponse(code = 404, message = "Cuenta no encontrada")
+    })
     public ResponseEntity<Cuenta> obtenerCuenta(@PathVariable Long id) {
         Optional<Cuenta> cuenta = cuentaService.obtenerCuentaPorId(id);
         return cuenta.map(ResponseEntity::ok)
@@ -42,6 +56,12 @@ public class CuentaController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar cuenta", description = "Actualiza los detalles de una cuenta específica.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Cuenta actualizada exitosamente"),
+            @ApiResponse(code = 400, message = "Solicitud incorrecta, probablemente debido a argumentos inválidos"),
+            @ApiResponse(code = 404, message = "Cuenta no encontrada con el ID proporcionado")
+    })
     public ResponseEntity<Cuenta> actualizarCuenta(@PathVariable Long id, @RequestBody Cuenta cuenta) {
         try {
             Cuenta cuentaActualizada = cuentaService.actualizarCuenta(id, cuenta);
@@ -52,6 +72,11 @@ public class CuentaController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar cuenta por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Cuenta eliminada exitosamente"),
+            @ApiResponse(code = 404, message = "Cuenta no encontrada")
+    })
     public ResponseEntity<Void> eliminarCuenta(@PathVariable Long id) {
         try {
             cuentaService.eliminarCuenta(id);

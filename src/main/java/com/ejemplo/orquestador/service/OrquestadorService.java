@@ -1,9 +1,7 @@
 package com.ejemplo.orquestador.service;
 
 import com.ejemplo.orquestador.client.ClienteClient;
-import com.ejemplo.orquestador.client.CuentaClient;
-import com.ejemplo.orquestador.client.MovimientosClient;
-import com.ejemplo.orquestador.dto.DetalleMovClienteDTO;
+import com.ejemplo.orquestador.dto.ClienteDTO;
 import com.ejemplo.orquestador.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +11,17 @@ public class OrquestadorService {
 
     @Autowired
     private ClienteClient clienteClient;
-
+/*
     @Autowired
     private CuentaClient cuentaClient;
 
     @Autowired
-    private MovimientosClient movimientosClient;
+    private MovimientosClient movimientosClient;*/
 
-    public DetalleMovClienteDTO obtenerDetalleCliente(Long clienteId) {
+    public ClienteDTO obtenerClienteById(Long clienteId) {
        Cliente cliente = clienteClient.getCliente(clienteId);
-       /*  Cuenta cuenta = cuentaClient.getCuentaByCliente(cliente.getId());
-        List<Movimiento> movimientos = movimientosClient.getMovimientos(cuenta.getId());*/
-
-        return null;
+        ClienteDTO clienteDTO = ClienteDTO.fromEntity(cliente);
+        return clienteDTO != null ? clienteDTO : null;
     }
+
 }

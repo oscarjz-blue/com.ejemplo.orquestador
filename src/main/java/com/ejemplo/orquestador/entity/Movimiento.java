@@ -9,6 +9,10 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Getter
@@ -25,5 +29,9 @@ public class Movimiento {
     @JoinColumn(name = "cuenta_id")
     private Cuenta cuenta;
 
+    @CreationTimestamp
+    private Date creationDate;
+    @UpdateTimestamp
+    private Date modificationDate;
     // Getters y Setters
 }

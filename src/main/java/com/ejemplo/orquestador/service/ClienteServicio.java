@@ -2,7 +2,7 @@ package com.ejemplo.orquestador.service;
 
 import com.ejemplo.orquestador.entity.Cliente;
 import com.ejemplo.orquestador.exceptions.RecursoDuplicadoException;
-import com.ejemplo.orquestador.repository.ClienteRepositorio;
+import com.ejemplo.orquestador.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,36 +12,36 @@ import java.util.List;
 public class ClienteServicio {
 
     @Autowired
-    private ClienteRepositorio clienteRepositorio;
+    private ClienteRepository clienteRepository;
 
     public List<Cliente> obtenerTodos() {
-        return clienteRepositorio.findAll();
+        return clienteRepository.findAll();
     }
 
     public Cliente obtenerPorId(Long id) {
-        return clienteRepositorio.findById(id).orElse(null);
+        return clienteRepository.findById(id).orElse(null);
     }
 
     public Cliente crear(Cliente cliente) {
         // Validar duplicados
-        if (clienteRepositorio.existsByEmail(cliente.getEmail())) {
-            throw new RecursoDuplicadoException("El email ya está registrado");
+        if (clienteRepository.existsByEmail(cliente.getEmail())) {
+            throw new RecursoDuplicadoException("El email ya esta registrado");
         }
-        return clienteRepositorio.save(cliente);
+        return clienteRepository.save(cliente);
     }
 
     public Cliente actualizar(Long id, Cliente cliente) {
-        if (!clienteRepositorio.existsById(id)) {
+        if (!clienteRepository.existsById(id)) {
             throw new RuntimeException("Cliente no encontrado");
         }
         cliente.setId(id);
-        return clienteRepositorio.save(cliente);
+        return clienteRepository.save(cliente);
     }
 
     public void eliminar(Long id) {
-        if (!clienteRepositorio.existsById(id)) {
+        if (!clienteRepository.existsById(id)) {
             throw new RuntimeException("Cliente no encontrado");
         }
-        clienteRepositorio.deleteById(id);
+        clienteRepository.deleteById(id);
     }
 }
